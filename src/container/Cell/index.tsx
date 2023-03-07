@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 import { CellStatus, CellType, CellGameOverStatus, GameStatus, GameMode } from '@/utils/constants'
 import type { CellInfo } from '@/types/cell'
 import './index.less'
-import useBearStore from '@/store/game'
+import useGameStore from '@/store/game'
 import cls from 'classnames'
 
 type Props = {
@@ -61,7 +61,7 @@ const MineCell = (props: SubCellProps) => {
   const { pos, cell, onMouseDown, onMouseUp, onMouseMove, i, j, cheat, gameFinish } = props
   const { status } = cell || {}
   const isOpen = status === CellStatus.opened
-  const boomPos = useBearStore((state) => state.boomPos)
+  const boomPos = useGameStore((state) => state.boomPos)
   const isBoom = boomPos[0] === j && boomPos[1] === i
   return (
     <div
@@ -104,8 +104,8 @@ const MineCell = (props: SubCellProps) => {
 
 function Cell(props: Props) {
   const { i, j, cell, onMouseDown, onMouseUp, onMouseMove } = props
-  const gameStatus = useBearStore((state) => state.status)
-  const mode = useBearStore((state) => state.mode)
+  const gameStatus = useGameStore((state) => state.status)
+  const mode = useGameStore((state) => state.mode)
 
   const gameFinishs = [GameStatus.success, GameStatus.fail]
   const commonProps = {

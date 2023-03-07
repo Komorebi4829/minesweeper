@@ -9,7 +9,7 @@
   font-size: 24px;
   font-family: monospace;
   &-initial {
-    background-color: rgb(192, 192, 192);
+    background-color: var(--bg-cell-initial);
     box-shadow: inset 2px 2px 0px white, inset -2px -2px 0px rgb(128, 128, 128);
     cursor: pointer;
 
@@ -19,14 +19,15 @@
     }
   }
   &-open {
-    background-color: rgb(192, 192, 192);
+    background-color: var(--bg-cell-open);
     box-shadow: inset 2px 2px 0px rgb(128, 128, 128);
   }
   &-cheat {
     opacity: 0.3;
   }
   &-boom {
-    background-color: #ef4444;
+    // background-color: #ef4444;
+    background-color: var(--bg-cell-boom);
   }
   &-number {
     &[data-num='1'] {
@@ -55,3 +56,16 @@
     }
   }
 }
+
+/*
+.cell {
+  &-boom {
+    [data-theme='light'] {
+      background-color: #ef4444;
+    }
+    [data-theme='dark'] {
+      background-color: yellow;
+    }
+  }
+}
+*/

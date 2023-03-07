@@ -22,19 +22,6 @@ export const SPECIFICATION = {
   },
 }
 
-// export enum CellType {
-//   normal = 'normal',
-//   number = 'number',
-//   blank = 'blank',
-//   mine = 'mine',
-//   boom = 'boom',
-//   flag = 'flag',
-
-//   // for cheat
-//   cheatNormal = 'cheatNormal',
-//   cheatMine = 'cheatMine',
-// }
-
 export enum CellType {
   number = 'number',
   blank = 'blank',
@@ -48,7 +35,7 @@ export enum CellStatus {
 }
 
 export enum CellGameOverStatus {
-  bullseye, // boom on there
+  bullseye, // exploded here
   normal,
 }
 

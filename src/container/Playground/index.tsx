@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react'
-import Cell from '@/components/Cell'
+import Cell from '@/container/Cell'
 import {
   GameStatus,
   GameMode,
@@ -8,9 +8,7 @@ import {
   CellStatus,
   CellGameOverStatus,
 } from '@/utils/constants'
-// import useGameStore from '@/store'
-import useBearStore from '@/store/game'
-import Game from '@/utils/Game'
+import useGameStore from '@/store/game'
 import init from '@/utils/gameHelper'
 import PlayInfo from '@/container/PlayInfo'
 import { isMine, isBlank, isNumber, isOpen, isFlag } from '@/utils/cellHelper'
@@ -19,18 +17,17 @@ import { getAround } from '@/utils/utils'
 import './index.less'
 
 export default function Playground() {
-  // const game = new Game()
-  const mode = useBearStore((state) => state.mode)
-  const level = useBearStore((state) => state.level)
-  const setCells = useBearStore((state) => state.setCells)
-  const cells = useBearStore((state) => state.cells)
-  const status = useBearStore((state) => state.status)
-  const refresh = useBearStore((state) => state.refresh)
-  const start = useBearStore((state) => state.start)
-  const finish = useBearStore((state) => state.finish)
-  const boom = useBearStore((state) => state.boom)
-  const setDebugPos = useBearStore((state) => state.setDebugPos)
-  const setMouseDown = useBearStore((state) => state.setMouseDown)
+  const mode = useGameStore((state) => state.mode)
+  const level = useGameStore((state) => state.level)
+  const setCells = useGameStore((state) => state.setCells)
+  const cells = useGameStore((state) => state.cells)
+  const status = useGameStore((state) => state.status)
+  const refresh = useGameStore((state) => state.refresh)
+  const start = useGameStore((state) => state.start)
+  const finish = useGameStore((state) => state.finish)
+  const boom = useGameStore((state) => state.boom)
+  const setDebugPos = useGameStore((state) => state.setDebugPos)
+  const setMouseDown = useGameStore((state) => state.setMouseDown)
 
   useEffect(() => {}, [])
 
@@ -179,14 +176,14 @@ export default function Playground() {
       let item = l[j]
       let [aroundX, aroundY] = item
       let aroundCell = cells[aroundY][aroundX]
-      // 先看四周是否有雷
+      // First check if there are any mines around
       if (isMine(aroundCell)) {
         haveMine = true
       } else {
         toOpenBlock.push(item)
       }
     }
-    // 如果没有雷才继续开空白块
+    // If there is no mine, continue to open blank squares
     if (!haveMine) {
       for (let j = 0; j < toOpenBlock.length; j++) {
         let item = l[j]

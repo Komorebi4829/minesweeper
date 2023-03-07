@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import useBearStore from '@/store/game'
+import useGameStore from '@/store/game'
 import {
   CellStatus,
   SPECIFICATION,
@@ -12,13 +12,13 @@ import {
 type Props = {}
 
 export default function Index(props: Props) {
-  const reset = useBearStore((state) => state.reset)
-  const status = useBearStore((state) => state.status)
-  const level = useBearStore((state) => state.level)
+  const reset = useGameStore((state) => state.reset)
+  const status = useGameStore((state) => state.status)
+  const level = useGameStore((state) => state.level)
   const initialAmount = SPECIFICATION[level].amount
-  const mouseDown = useBearStore((state) => state.mouseDown)
-  const startTime = useBearStore((state) => state.startTime)
-  const endTime = useBearStore((state) => state.endTime)
+  const mouseDown = useGameStore((state) => state.mouseDown)
+  const startTime = useGameStore((state) => state.startTime)
+  const endTime = useGameStore((state) => state.endTime)
   const initialTime = 1
   const [time, settime] = useState(initialTime)
   const timeRef = useRef(initialTime)

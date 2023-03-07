@@ -43,24 +43,24 @@ function _generateNumber(row: number, column: number, minesIndex: number[]) {
     matrix[_getIndex(x, y, row, column)] = '💣'
 
     for (let j = 0; j < l.length; j++) {
-      // 遍历雷的四周，最后如果得到了数字，就把数字替换到格子上
+      // Traverse around the mine. Finally, if a number is obtained, replace the grid with the number
       const item = l[j]
       // console.debug('item', item)
       const x = item[0]
       const y = item[1]
-      // 雷的四周不全是数字，也有可能是雷
+      // The surroundings of the mine are not all numbers; there may also be mines
       if (minesIndex.indexOf(_getIndex(x, y, row, column)) > -1) {
         continue
       }
       const ll = getAround(x, y, row, column)
-      // 转化x y到索引
-      // 这里得到的是 原始雷的四周的四周的坐标索引
+      // Convert x and y to indices
+      // Here we get the coordinates of the original mine’s surroundings
       const ll_index = ll.map((item) => {
         const x = item[0]
         const y = item[1]
         return _getIndex(x, y, row, column)
       })
-      // 用这个索引 与 雷 的索引对比，如果有一致的说明这个点的数字+1
+      // Use this index to compare with the index of mines. If there is a match, it means that this point’s number +1
       const result = intersect(ll_index, minesIndex)
       const mineNum = result.length
 

@@ -14,6 +14,7 @@ interface BearState {
   lang: string
   startTime: number
   endTime: number
+  theme: string
 
   toggleMode: () => void
   setCells: (cells: CellInfo[][]) => void
@@ -26,12 +27,13 @@ interface BearState {
   setDebugPos: (x: number, y: number) => void
   setMouseDown: (s: boolean) => void
   setLang: (lang: string) => void
+  toggleTheme: () => void
 }
 
 const { row, col, amount } = SPECIFICATION[initLevel]
 const cells = init(row, col, amount)
 
-const useBearStore = create<BearState>()((set) => ({
+const useGameStore = create<BearState>()((set) => ({
   mode: process.env.NODE_ENV === 'development' ? GameMode.cheat : GameMode.normal,
   level: initLevel,
   status: GameStatus.initial,
@@ -39,6 +41,7 @@ const useBearStore = create<BearState>()((set) => ({
   lang: initLang,
   startTime: 0,
   endTime: 0,
+  theme: 'light',
 
   setMouseDown: (s: boolean) => set((state) => ({ mouseDown: s })),
   toggleMode: () =>
@@ -91,6 +94,7 @@ const useBearStore = create<BearState>()((set) => ({
       debugPos: [x, y],
     })),
   setLang: (lang: string) => set((state) => ({ lang })),
+  toggleTheme: () => set((state) => ({ theme: state.theme === 'light' ? 'dark' : 'light' })),
 }))
 
-export default useBearStore
+export default useGameStore
