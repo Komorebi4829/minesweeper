@@ -1,0 +1,71 @@
+.cell {
+  width: 28px;
+  height: 28px;
+  line-height: 28px;
+  display: inline-block;
+  text-align: center;
+  color: #000;
+  font-weight: bold;
+  font-size: 24px;
+  font-family: monospace;
+  &-initial {
+    background-color: var(--bg-cell-initial);
+    box-shadow: inset 2px 2px 0px white, inset -2px -2px 0px rgb(128, 128, 128);
+    cursor: pointer;
+
+    &:hover {
+      font-size: 28px;
+      transition: font-size 0.2s;
+    }
+  }
+  &-open {
+    background-color: var(--bg-cell-open);
+    box-shadow: inset 2px 2px 0px rgb(128, 128, 128);
+  }
+  &-cheat {
+    opacity: 0.3;
+  }
+  &-boom {
+    // background-color: #ef4444;
+    background-color: var(--bg-cell-boom);
+  }
+  &-number {
+    &[data-num='1'] {
+      color: rgb(0, 0, 255);
+    }
+    &[data-num='2'] {
+      color: rgb(0, 128, 0);
+    }
+    &[data-num='3'] {
+      color: rgb(255, 0, 0);
+    }
+    &[data-num='4'] {
+      color: rgb(0, 0, 128);
+    }
+    &[data-num='5'] {
+      color: rgb(128, 0, 0);
+    }
+    &[data-num='6'] {
+      color: rgb(0, 128, 128);
+    }
+    &[data-num='7'] {
+      color: rgb(0, 0, 0);
+    }
+    &[data-num='8'] {
+      color: rgb(128, 128, 128);
+    }
+  }
+}
+
+/*
+.cell {
+  &-boom {
+    [data-theme='light'] {
+      background-color: #ef4444;
+    }
+    [data-theme='dark'] {
+      background-color: yellow;
+    }
+  }
+}
+*/
